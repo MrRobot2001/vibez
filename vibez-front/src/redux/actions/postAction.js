@@ -1,0 +1,170 @@
+import {GLOBALTYPES} from './globalTypes'
+import {imageUpload} from '../../imageupload'
+import {postDataAPI,getDataAPI,patchDataAPI,deleteDataAPI} from '../../fetchData'
+import {createNotify,deleteNotify} from './notifyAction'
+
+export const POST_TYPES = {
+    CREATE_POST : 'CREATE_POST',
+    LOADING_POSTS: 'LOADING_POSTS',
+    GET_POSTS: 'GET_POSTS',
+    UPDATE_POSTS: 'UPDATE_POSTS',
+    GET_POST: 'GET_POST',
+    DELETE_POST: 'DELETE_POST'
+}
+
+export const createPost = ({content, images, auth, socket}) => async(dispatch) => {
+    let media = []
+    try {
+           dispatch({type : GLOBALTYPES.ALERT, payload: {loading: true}})
+           if(images.length > 0) media = await imageUpload(images)
+
+           const res = await postDataAPI('posts',{ content, images: media},auth.token)
+
+           dispatch({type : POST_TYPES.CREATE_POST, payload: res.data.newPost})
+           dispatch({type : GLOBALTYPES.ALERT, payload: {loading: false}})
+
+            const msg = {
+               id: res.data.newPost._id,
+               text: 'added a New Post.',
+               recipients: res.data.newPost.user.followers,
+               url: `/post/${res.data.newPost._id}`,
+               content,
+               image: media[0].url
+            }
+
+           dispatch(createNotify({msg, auth, socket}))
+    } catch (err) {
+        dispatch({type : GLOBALTYPES.ALERT, payload: {error: err.response.data.msg}})
+    }
+}
+
+export const getPosts = (token) => async(dispatch) => {
+    try {
+        dispatch({type : POST_TYPES.LOADING_POSTS, payload: true})
+        const res = await getDataAPI('http://localhost:3000/posts',token)
+        
+        dispatch({type : POST_TYPES.GET_POSTS, payload: {...res.data, page:2}})
+
+        dispatch({type : POST_TYPES.LOADING_POSTS, payload: false})
+    } catch (err) {
+        dispatch({type : GLOBALTYPES.ALERT, payload: {error: err.response.data.msg}})
+    }
+}
+
+export const updatePost = ({content, images, auth, status}) => async(dispatch) => {
+    let media = []
+    const imgNewUrl = images.filter(img => !img.url)
+    const imgOldUrl = images.filter(img => img.url)
+
+    if(status.content === content && imgNewUrl.length === 0 && imgOldUrl.length === status.images.length) return;
+
+    try {
+        dispatch({type : GLOBALTYPES.ALERT, payload: {loading: true}})
+        if(imgNewUrl.length > 0) media = await imageUpload(imgNewUrl)
+
+        const res = await patchDataAPI(`http://localhost:3000/post/${status._id}`,{
+            content, images: [...imgOldUrl, ...media]
+        },auth.token)
+        console.log(res)
+        dispatch({type : POST_TYPES.UPDATE_POSTS, payload: res.data.newPost})
+
+        dispatch({type : GLOBALTYPES.ALERT, payload: {success: res.data.msg}}) 
+    } catch (err) {
+        dispatch({type : GLOBALTYPES.ALERT, payload: {error: err.response.data.msg}})
+    }
+}
+
+export const likePost = ({post, auth, socket}) => async(dispatch) => {
+    const newPost = {...post, likes: [...post.likes, auth.user]}
+    dispatch({type: POST_TYPES.UPDATE_POSTS, payload: newPost})
+    socket.emit('likePost', newPost)
+
+    try {
+        await patchDataAPI(`http://localhost:3000/post/${post._id}/like`, null, auth.token)
+
+        const msg = {
+            id: auth.user._id,
+            text: 'liked your Post.',
+            recipients: [post.user._id],
+            url: `/post/${post._id}`,
+            content: post.content,
+            image: post.images[0].url
+         }
+
+        dispatch(createNotify({msg, auth, socket}))
+    } catch (err) {
+        dispatch({type: GLOBALTYPES.ALERT, payload: {error: err.response.data.msg}})
+    }
+}
+
+export const unLikePost = ({post, auth, socket}) => async(dispatch) => {
+    const newPost = {...post, likes: post.likes.filter(like => like._id !== auth.user._id)}
+    dispatch({type: POST_TYPES.UPDATE_POSTS, payload: newPost})
+    socket.emit('unLikePost', newPost)
+    
+    try {
+        await patchDataAPI(`http://localhost:3000/post/${post._id}/unlike`, null, auth.token)
+        const msg = {
+            id: auth.user._id,
+            text: 'liked your Post.',
+            recipients: [post.user._id],
+            url: `/post/${post._id}`
+         }
+
+        dispatch(deleteNotify({msg, auth, socket}))
+    } catch (err) {
+        dispatch({type: GLOBALTYPES.ALERT, payload: {error: err.response.data.msg}})
+    }
+}
+
+export const getPost = ({detailPost, id, auth}) => async(dispatch) => {
+    if(detailPost.every(post => post._id !== id)){
+        try {
+            const res = await getDataAPI(`http://localhost:3000/post/${id}`, auth.token)
+            dispatch({type :POST_TYPES.GET_POST, payload: res.data.post})
+        } catch (err) {
+            dispatch({type: GLOBALTYPES.ALERT, payload: {error: err.response.data.msg}})
+        }
+    }
+}
+
+export const deletePost = ({post, auth, socket}) => async (dispatch) => {
+    dispatch({type : POST_TYPES.DELETE_POST, payload: post})
+
+    try {
+        const res = await deleteDataAPI(`post/${post._id}`, auth.token)
+
+        const msg = {
+            id: post._id,
+            text: 'added a New Post.',
+            recipients: res.data.newPost.user.followers,
+            url: `/post/${post._id}`
+         }
+
+        dispatch(deleteNotify({msg, auth, socket}))
+    } catch (err) {
+        dispatch({type: GLOBALTYPES.ALERT, payload: {error: err.response.data.msg}})
+    }
+}
+
+export const savePost = ({post, auth}) => async (dispatch) => {
+    const newUser = {...auth.user, saved: [...auth.user.saved, post._id]}
+    dispatch({type: GLOBALTYPES.AUTH, payload: {...auth,user:newUser}})
+    
+    try {
+        await patchDataAPI(`http://localhost:3000/savePost/${post._id}`,null, auth.token) 
+    } catch (err) {
+        dispatch({type: GLOBALTYPES.ALERT, payload: {error: err.response.data.msg}})
+    }
+}
+
+export const unSavePost = ({post, auth}) => async (dispatch) => {
+    const newUser = {...auth.user, saved: auth.user.saved.filter(id => id !== post._id)}
+    dispatch({type: GLOBALTYPES.AUTH, payload: {...auth,user:newUser}})
+    
+    try {
+        await patchDataAPI(`http://localhost:3000/unSavePost/${post._id}`,null, auth.token) 
+    } catch (err) {
+        dispatch({type: GLOBALTYPES.ALERT, payload: {error: err.response.data.msg}})
+    }
+}

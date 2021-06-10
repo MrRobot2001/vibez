@@ -1,0 +1,47 @@
+.vert{
+    cursor: pointer;
+}
+.dropdown_2{
+    position: absolute;
+    right: 0;
+}
+.dropdown-content_2{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 155px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 5;
+}
+  
+  .dropdown-content_2 a {
+    color: black;
+    display: none;
+    margin-left: 7px;
+    text-decoration: none;
+    display: flex;
+    margin-top: 8px;
+    cursor: pointer;
+    margin-bottom: 8px;
+  }
+  
+  .dropdown-content_2 a:hover {color: blueviolet;font-weight: bold}
+  .edit_posts{
+      cursor: pointer;
+      margin-right: 7px;
+  }
+
+  .delete_posts{
+      cursor: pointer;
+      margin-right: 7px;
+  }
+
+  .copy_posts{
+      cursor: pointer;
+      margin-right: 7px;
+  }
+  .show{
+      display: visible;
+  }
+

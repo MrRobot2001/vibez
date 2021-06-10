@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+.comment_card_1{
+    margin-top: 2px;
+}
+.comment_content_1{
+    background: #eee;
+    padding: 7px;
+    border-radius: 10px;
+    border-top-left-radius: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.comment_read{
+    font-size: 13px;
+    cursor: pointer;
+    color: crimson;
+}
+.comment_a{
+    display: flex;
+    text-decoration: none;
+    margin-bottom: 7px;
+}
+.comment_images{
+    border-radius: 50%;
+}
+.comment_text{
+    margin:0 3px;
+    margin-top: 1.5px;
+    color: black;
+    font-size: 12px;
+    text-decoration: none;
+}
+.comment_text:hover{
+    color: black;
+    text-decoration: underline;
+}
+.comment_a:hover{
+    cursor: pointer;
+}
+.comment_content_2{
+    flex: fill;
+    font-family: 'Lora',serif;
+}
+.comment_small{
+    color: gray;
+    font-family: 'Lora',serif;
+    font-size: 11px;
+    font-weight: 500;
+    margin-right: 3px;
+    margin-left: 3px;
+}
+.comment_small_1{
+    margin-right: 3px;
+    font-family: 'Lora',serif;
+    margin-left: 9px;
+    font-weight: bold;
+}
+.like_menu{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 7px;
+}
+.comment_45{
+    opacity: 0
+}
+.comment_content_1:hover .comment_45{
+    opacity: 1;
+    cursor: pointer
+}
+.textarea_comment{
+    width: 530px;
+    border: none;
+    outline: none;
+}
+.a_reply{
+    text-decoration: none;
+    font-size: 15px;   
+    margin-top: -1px;
+    font-family: 'Lora',serif;
+}
+.a_reply_1{
+    text-decoration: none;
+    font-size: 15px;   
+    margin-top: -1px;
+    font-family: 'Lora',serif;
+    margin-right: 4px;
+}

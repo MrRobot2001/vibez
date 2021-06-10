@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:wght@200&display=swap');
+.modal{
+    position: fixed;
+    z-index: 20;
+    top: 1%;
+    right: 1.5%;
+    width: 220px !important;
+    max-height: 150px  !important;
+    border-radius: 1px !important;
+    overflow: hidden !important;
+    outline: none !important;
+}
+.vibez{
+    margin-left: 10px !important;
+    font-style: italic;
+    color: white;
+}
+.modal-body{
+    margin-left: 10px !important;
+    color: white;
+    margin-bottom: 5px;
+}
+.buttonx{
+    margin-left: 150px !important;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'Newsreader', serif;
+    color: white;
+}

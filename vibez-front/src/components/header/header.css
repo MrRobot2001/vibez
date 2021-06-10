@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Unicase:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap');
+body{background-color: white;}
+.a1{
+    text-decoration: none !important;
+}
+.text1{
+    text-decoration: none;
+    font-size: 30px;
+    letter-spacing: 1.5px;
+    font-family: 'Pinyon Script';
+    color: white;
+}
+.image1{
+    margin-top: 2px !important;
+    margin-bottom: -15px !important;
+}
+.home1{
+    display: flex;
+    background-color: black;
+    align-items: center;
+    margin-top: -10px !important;
+    justify-content: space-between;
+}
+.nav1{
+    display: flex;
+    margin-right: 10px;
+}
+.link1{
+    margin-left: 7px;
+    margin-right: 7px;
+    font-size: 55px;
+    cursor: pointer;
+    text-decoration: none !important;
+    font-family: 'Cormorant Unicase', serif !important;
+}
+.link1:hover{
+    color: #34da79;
+}
+.home1 .search button {
+    color: white;
+    padding: 6px 7px;
+    margin-top: 8px;
+    margin-right: 16px;
+    background: black;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+}
+.search{
+    margin-left: 350px !important;
+    margin-top: 1px !important;
+}
+.home1 input[type="text"]{
+    position: absolute;
+    width: 200px;
+    height: 25px;
+    font-family: 'Cormorant Unicase', serif !important;
+    font-weight: 800;
+    font-size: 18px;
+    color: white !important;
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 5px;
+    outline: none;
+}
+.home1 input[type="text"]:focus{
+    border: 2px solid #2ecc71;
+}
+.active{
+    color: white !important;
+}
+.message:hover{
+    color: rgb(0, 106, 255) !important;
+}
+
+.logout:hover{
+    color: red !important;
+}
+.home:hover{
+    color: white !important;
+}
+.explore:hover{
+    color: pink !important;
+}
+.notifications{
+    font-size: 31px !important;
+}
+.message{
+    color:  grey;
+}
+.profile{
+    border-radius: 50%;
+}
+.logout{
+    color: red;
+}
+.home{
+    color: grey;
+}
+.explore{
+    color: grey;
+}
+.buttonxy{
+    position: relative;
+    cursor: pointer;
+    font-size: 13px;
+    bottom: -1.5px;
+    margin-left: 190px;
+    font-family: 'Newsreader', serif;
+    color: white;
+    font-weight: bolder;
+}
+.users{
+    position: absolute;
+    z-index: 10;
+    min-width: 205px;
+    height: 400px;
+    overflow-y: auto; 
+}
+.load{
+    position: relative;
+    height: 14px;
+    width: 14px;
+    bottom: -4px;
+    margin-left: -14px;
+}
+.dropdown_1{
+    position: absolute;
+    top: 7%;
+    left: 76%;
+}
+.small_notify{
+    position: absolute;
+    top: 3%;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 10px;
+    right: 7.89%;
+}
+.dropdown-content_1 {
+    position: absolute;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 5;
+    cursor: pointer;
+}

@@ -1,0 +1,67 @@
+.text-danger{
+    color:red;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+.notify_1{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5px;
+    margin-top: -13px;
+    margin-bottom: -18px;
+}
+.image_notify{
+    border-radius: 50%;
+    padding: 5px 10px;
+    margin-left: 33px;
+}
+.image_notify_2{
+    border-radius: 50%;
+}
+.image_notify_3{
+    border-radius: 50%;
+    margin-left: 10px;
+    margin-right: 4px;
+}
+.notify_map_1{
+    padding: 0 4px;
+    margin-bottom: 3px;
+}
+.notify_a{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+}
+.notify_map_3{
+    flex: fill;
+    margin-left: 6px;
+}
+.strong_notify{
+    margin-right: 5px;
+}
+.notify_a:hover{
+    color: black;
+    text-decoration: underline;
+}
+.notify_small{
+    font-size: 13px;
+}
+.moment_notify{
+    color: gray;
+    display: flex;
+    justify-content: space-between;
+    padding:0 3px;
+    margin-top: 4px;
+}
+.circle{
+    color: #0275d8;
+}
+.delete_notify{
+    cursor: pointer;
+    color: red;
+    text-align: right;
+    margin-bottom: 6px;
+    margin-right: 6px;
+}

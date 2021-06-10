@@ -1,0 +1,42 @@
+.fifth1 {
+    height: 33px;
+    width: 190px;
+    cursor: pointer;
+    font-size: 22px;
+    padding-top: 5px;
+    word-spacing: 4px;
+    letter-spacing: 1.5px;
+    margin-top: 165px;
+    font-weight: bold;
+    border: 2px solid #17a2b8;
+    border-radius: 0;
+    color: #17a2b8;
+    background-color: transparent;
+    font-family: 'Newsreader', serif;
+}
+.fifth1:hover{
+    color: white;
+    font-size: 25px;
+    background-color: #17a2b8; 
+}  
+.fifth2 {
+    height: 33px;
+    width: 190px;
+    cursor: pointer;
+    font-size: 22px;
+    padding-top: 5px;
+    word-spacing: 4px;
+    letter-spacing: 1.5px;
+    margin-top: 165px;
+    font-weight: bold;
+    border: 2px solid red;
+    border-radius: 0;
+    color: red;
+    background-color: transparent;
+    font-family: 'Newsreader', serif;
+}
+.fifth2:hover{
+    color: white;
+    font-size: 25px;
+    background-color: red; 
+}

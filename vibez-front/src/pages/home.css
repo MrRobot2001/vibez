@@ -1,0 +1,21 @@
+.text_posts{
+    font-size: 22px;
+    font-weight: bold;
+    margin-left: 550px;
+    margin-top: 30px;
+}
+.loading_posts{
+    margin-left: 605px;
+    margin-top: 30px;
+}
+.home_1{
+    display: flex;
+}
+.home_2{
+    display: flex;
+    flex-direction: column;
+}
+.home_3{
+    margin-top: 35px;
+    margin-left: 200px;
+}
