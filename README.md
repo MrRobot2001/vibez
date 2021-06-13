@@ -1,7 +1,7 @@
 # ViBez
 ## A MERN Stack Social Media App
 #### MERN + Redux
-**Demo** https://vibez-raghav.herokuapp.com/signup **(Not Respnosive but will make it responsive and better later)**
+**Demo** https://vibez-raghav.herokuapp.com/signup **(Not Respnosive but will make it responsive later)**
 
 ## Interface-
 
